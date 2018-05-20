@@ -15,10 +15,7 @@
 	}
 	
 	function findAllUsers() {
-		var promise = fetch('http://localhost:8080/api/user');
-		var users = promise.then(function(response) {
-			return response.json();
-		}).then(renderUsers);
+		userService.findAllUsers().then(renderUsers);
 	}
 	
 	function createUser() {
