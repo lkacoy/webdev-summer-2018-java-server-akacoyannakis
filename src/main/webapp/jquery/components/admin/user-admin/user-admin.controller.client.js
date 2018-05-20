@@ -11,6 +11,10 @@
 		template = $('.template');
 		$('#createUser').click(createUser);
 		
+		findAllUsers();
+	}
+	
+	function findAllUsers() {
 		var promise = fetch('http://localhost:8080/api/user');
 		var users = promise.then(function(response) {
 			return response.json();
@@ -30,7 +34,7 @@
 				lastName: lastName
 		};
 		
-		userService.createUser(user);
+		userService.createUser(user).then(findAllUsers);
 	}
 
 	function renderUsers(users) {
