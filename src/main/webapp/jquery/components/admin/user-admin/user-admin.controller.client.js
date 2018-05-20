@@ -3,6 +3,7 @@
 	$(main); //declare listener on document to wait until load
 	var tbody;
 	var template;
+	var userService = new UserServiceClient();
 
 	function main() {
 
@@ -29,13 +30,7 @@
 				lastName: lastName
 		};
 		
-		fetch('http://localhost:8080/api/user', {
-			method: 'post',
-            body: JSON.stringify(user),
-            headers: {
-                'content-type': 'application/json'
-            }
-		});
+		userService.createUser(user);
 	}
 
 	function renderUsers(users) {
