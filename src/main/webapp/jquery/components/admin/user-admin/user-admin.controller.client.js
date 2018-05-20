@@ -1,28 +1,27 @@
 (function hello() {
-	
+
 	$(main); //declare listener on document to wait until load
-	
+	var tbody;
+	var template;
+
 	function main() {
-		var h1 = $('h1');
-		h1.css('color', 'red');
-		h1.html('User Administration');
-		
-		var tr = $('.template');
-		
-		var users = [
-			{username: 'bob'},
-			{username: 'charlie'}
-		]
-		
-		var tbody = $('tbody');
-		for (var i=0; i < users.length; i++) {
+
+		tbody = $('tbody');
+		template = $('.template');
+		var promise = fetch('http://localhost:8080/api/user');
+		var users = promise.then(function(response) {
+			return response.json();
+		}).then(renderUsers);
+	}
+
+	function renderUsers(users) {
+
+		for (var i = 0; i < users.length; i++) {
 			var user = users[i];
-			console.log(user);
-			var clone = tr.clone();
+			var clone = template.clone();
 			clone.find('.username').html(user.username);
 			tbody.append(clone);
 		}
-		
 	}
 
 })();
