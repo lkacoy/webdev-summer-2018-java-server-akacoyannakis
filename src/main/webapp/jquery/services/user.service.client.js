@@ -3,7 +3,7 @@ function UserServiceClient() {
     this.findAllUsers = findAllUsers;
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
-   // this.updateUser = updateUser;
+    this.updateUser = updateUser;
     this.url = 'http://localhost:8080/api/user';
     var self = this;
     
@@ -36,6 +36,22 @@ function UserServiceClient() {
     			return response.json();
     		});
     }
-  //  function updateUser(userId, user, callback) { … }
+  
+    function updateUser(userId, user, callback) {
+    	return fetch(self.url + '/' + userId, {
+			method: 'put',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+    	})
+		.then(function(response) {
+			if (response.bodyUsed) {
+				return response.json();
+			} else {
+				return null;
+			}
+		});
+    }
 }
 
