@@ -1,7 +1,7 @@
 function UserServiceClient() {
     this.createUser = createUser;
     this.findAllUsers = findAllUsers;
-//    this.findUserById = findUserById;
+    this.findUserById = findUserById;
     this.deleteUser = deleteUser;
    // this.updateUser = updateUser;
     this.url = 'http://localhost:8080/api/user';
@@ -29,8 +29,13 @@ function UserServiceClient() {
             }
 		});
     }
-/* 
-    function findUserById(userId, callback) { … }
-    function updateUser(userId, user, callback) { … }*/
+    
+    function findUserById(userId, callback) {
+    	return fetch(self.url + '/' + userId)
+    		.then(function(response) {
+    			return response.json();
+    		});
+    }
+  //  function updateUser(userId, user, callback) { … }
 }
 
