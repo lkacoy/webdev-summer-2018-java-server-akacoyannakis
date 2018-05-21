@@ -50,6 +50,10 @@ public class UserService {
 		return null;
 	}
 	
+//	@PostMapping("/api/logout")
+//	public User login(HttpSession session) { … }
+
+	
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {
 		return (List<User>) repository.findAll();
@@ -84,4 +88,8 @@ public class UserService {
 		}
 		return null;
 	}
+	
+//	@PutMapping("/api/profile")
+//	public User updateProfile(@RequestBody user, HttpSession session) { … }
+
 }
