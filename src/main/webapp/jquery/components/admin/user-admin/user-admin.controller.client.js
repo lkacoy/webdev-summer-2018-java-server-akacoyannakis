@@ -72,9 +72,8 @@
 		$userRowTemplate.prop('contenteditable', true);
 	}
 
-	function findUserById() {
-		
-		userService.findUserById().then(renderUser);
+	function findUserById(userId) {
+		userService.findUserById(userId).then(renderUser);
 	}
 
 	function updateUser(event) {
