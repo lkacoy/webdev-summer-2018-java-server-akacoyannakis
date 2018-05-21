@@ -1,14 +1,16 @@
 (function hello() {
 
 	$(main); //declare listener on document to wait until load
-	var tbody;
-	var template;
+	var $userRowTemplate, $tbody;
+	var $usernameFld, $passwordFld;
+    var $removeBtn, $editBtn, $createBtn;
+    var $firstNameFld, $lastNameFld;
 	var userService = new UserServiceClient();
 
 	function main() {
 
-		tbody = $('tbody');
-		template = $('.template');
+		$tbody = $('tbody');
+		$userRowTemplate = $('.template');
 		$('#createUser').click(createUser);
 		
 		findAllUsers();
@@ -35,17 +37,17 @@
 	}
 
 	function renderUsers(users) {
-		tbody.empty();
+		$tbody.empty();
 		for (var i = 0; i < users.length; i++) {
 			var user = users[i];
-			var clone = template.clone();
+			var clone = $userRowTemplate.clone();
 			
 			clone.attr('id', user.id);
 			clone.find('.delete').click(deleteUser);
 			clone.find('.edit').click(editUser);
 			clone.find('.username')
 				.html(user.username);
-			tbody.append(clone);
+			$tbody.append(clone);
 		}
 	}
 	
