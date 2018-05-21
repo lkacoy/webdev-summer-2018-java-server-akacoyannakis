@@ -1,4 +1,4 @@
-package com.example.webdevsummer2018alexandrakacoyannakis.models;
+package webdev.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +15,10 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private String phone;
+	private String email;
+	private String role;
+	private Date dateOfBirth;
 	
 	public int getId() {
 		return id;
