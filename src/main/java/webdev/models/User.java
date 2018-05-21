@@ -107,6 +107,10 @@ public class User {
 		this.role = role;
 		this.dateOfBirth = dateOfBirth;
 	}
+
+	public User() {
+		super();
+	}
 	
 	
 	
