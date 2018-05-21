@@ -47,6 +47,9 @@
 			clone.find('#wbdv-edit').click(editUser);
 			clone.find('.wbdv-username')
 				.html(user.username);
+			clone.find('.wbdv-first-name').html(user.firstName);
+			clone.find('.wbdv-last-name').html(user.lastName);
+			clone.find('.wbdv-role').html(user.role);
 			$tbody.append(clone);
 		}
 	}
