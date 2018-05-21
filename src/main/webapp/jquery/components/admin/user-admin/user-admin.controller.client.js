@@ -57,7 +57,7 @@
 	
 	function deleteUser(event) {
 		var deleteBtn = $(event.currentTarget);
-		var userId = deleteBtn.parent().parent().attr('id'); 
+		var userId = deleteBtn.parent().parent().parent().attr('id'); 
 		userService.deleteUser(userId).then(findAllUsers);
 	}
 	
