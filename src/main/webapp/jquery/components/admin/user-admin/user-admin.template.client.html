@@ -39,20 +39,24 @@
 						placeholder="First Name" /></td>
 					<td><input id="lastNameFld" class="form-control"
 						placeholder="Last Name" /></td>
-					<td><select id="roleFld" class="form-control">
+					<td>
+						<select id="roleFld" class="form-control">
 							<option value="FACULTY">Faculty</option>
 							<option value="STUDENT">Student</option>
-					</select></td>
-					<td><span class="float-right" style="white-space: nowrap">
-							<i class="fa-2x fa fa-search wbdv-search"></i> <i
-							class="fa-2x fa fa-plus wbdv-create"></i> <i
-							class="fa-2x fa fa-check wbdv-update"></i>
-					</span></td>
+						</select>
+					</td>
+					<td>
+						<span class="float-right" style="white-space: nowrap">
+							<i class="fa-2x fa fa-search wbdv-search"></i> 
+							<i id="createUser" class="fa-2x fa fa-plus wbdv-create"></i> 
+							<i class="fa-2x fa fa-check wbdv-update"></i>
+						</span>
+					</td>
 				</tr>
 
 			</thead>
 			<tbody>
-				<tr class="template wbdv-template wbdv-user wbdv-hidden">
+				<tr id="template" class="wbdv-template wbdv-user wbdv-hidden">
 					<td class="wbdv-username">ada</td>
 					<td>&nbsp;</td>
 					<td class="wbdv-first-name">Ada</td>

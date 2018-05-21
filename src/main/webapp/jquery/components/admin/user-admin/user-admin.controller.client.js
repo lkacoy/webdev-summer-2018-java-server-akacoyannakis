@@ -10,7 +10,7 @@
 	function main() {
 
 		$tbody = $('tbody');
-		$userRowTemplate = $('.template');
+		$userRowTemplate = $('#template');
 		$('#createUser').click(createUser);
 		
 		findAllUsers();
@@ -21,10 +21,10 @@
 	}
 	
 	function createUser() {
-		var username = $('#usernameFld').val();
-		var password = $('#passwordFld').val();
-		var firstName = $('#firstNameFld').val();
-		var lastName = $('#lastNameFld').val();
+		var username = $usernameFld.val();
+		var password = $passwordFld.val();
+		var firstName = $firstNameFld.val();
+		var lastName = $lastNameFld.val();
 		
 		var user = {
 				username: username,
@@ -43,9 +43,9 @@
 			var clone = $userRowTemplate.clone();
 			
 			clone.attr('id', user.id);
-			clone.find('.delete').click(deleteUser);
-			clone.find('.edit').click(editUser);
-			clone.find('.username')
+			clone.find('#wbdv-remove').click(deleteUser);
+			clone.find('#wbdv-edit').click(editUser);
+			clone.find('.wbdv-username')
 				.html(user.username);
 			$tbody.append(clone);
 		}
