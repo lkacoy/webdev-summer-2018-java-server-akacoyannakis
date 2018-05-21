@@ -51,6 +51,10 @@
 		}
 	}
 	
+	function renderUser(user) {
+		
+	}
+	
 	function deleteUser(event) {
 		var deleteBtn = $(event.currentTarget);
 		var userId = deleteBtn.parent().parent().attr('id'); 
@@ -59,6 +63,14 @@
 	
 	function editUser(event) {
 		console.log(event);
+	}
+	
+	function findUserById() {
+		userService.findUserById().then(renderUser);
+	}
+	
+	function updateUser() {
+		
 	}
 
 })();
