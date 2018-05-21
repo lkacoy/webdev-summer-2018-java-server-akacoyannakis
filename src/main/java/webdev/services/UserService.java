@@ -34,7 +34,7 @@ public class UserService {
 	}
 	
 	@PostMapping("/api/login")
-	public List<User> login(@RequestBody User user) {
+	public List<User> login(@RequestBody User user, HttpSession session) {
 		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
 	}
 	
