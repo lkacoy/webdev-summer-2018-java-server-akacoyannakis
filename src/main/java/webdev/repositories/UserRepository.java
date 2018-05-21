@@ -1,4 +1,4 @@
-package com.example.webdevsummer2018alexandrakacoyannakis.repositories;
+package webdev.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
