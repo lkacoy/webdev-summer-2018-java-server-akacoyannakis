@@ -1,16 +1,14 @@
 (function hello() {
 
 	$(main); //declare listener on document to wait until load
-	var $userRowTemplate, $tbody;
+	var tbody;
+	var template;
 	var userService = new UserServiceClient();
-	var $usernameFld, $passwordFld;
-	var $removeBtn, $editBtn, $createBtn;
-	var $firstNameFld, $lastNameFld;
 
 	function main() {
 
 		tbody = $('tbody');
-		$userRowTemplate = $('.template');
+		template = $('.template');
 		$('#createUser').click(createUser);
 		
 		findAllUsers();
@@ -40,7 +38,7 @@
 		tbody.empty();
 		for (var i = 0; i < users.length; i++) {
 			var user = users[i];
-			var clone = $userRowTemplate.clone();
+			var clone = template.clone();
 			
 			clone.attr('id', user.id);
 			clone.find('.delete').click(deleteUser);
