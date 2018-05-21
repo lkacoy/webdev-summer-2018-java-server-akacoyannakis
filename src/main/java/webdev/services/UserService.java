@@ -1,4 +1,4 @@
-package com.example.webdevsummer2018alexandrakacoyannakis.services;
+package webdev.services;
 
 import java.util.List;
 import java.util.Optional;
