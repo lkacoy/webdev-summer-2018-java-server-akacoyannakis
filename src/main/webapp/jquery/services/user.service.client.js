@@ -7,18 +7,20 @@ function UserServiceClient() {
     this.login = login;
     this.url =
         '/api/user';
-    this.login =
+    this.loginUrl =
         '/api/login';
     var self = this;
     
     function login(username, password) {
-        return fetch(self.login, {
+        return fetch(self.loginUrl, {
             method: 'post',
             body: JSON.stringify({username:username, password: password}),
             headers: {
                 'content-type': 'application/json'
             }
-        });
+        }).then(function (response) {
+			return response.json();
+		});
     }
     
     function deleteUser(userId) {

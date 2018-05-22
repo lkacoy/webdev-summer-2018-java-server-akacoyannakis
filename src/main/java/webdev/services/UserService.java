@@ -51,7 +51,7 @@ public class UserService {
 	}
 	
 //	@PostMapping("/api/logout")
-//	public User login(HttpSession session) { … }
+//	public User logout(HttpSession session) { … }
 
 	
 	@GetMapping("/api/user")
