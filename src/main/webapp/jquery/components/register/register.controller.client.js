@@ -1,9 +1,16 @@
-(function () {
+(function hello() {
     var $usernameFld, $passwordFld, $verifyPasswordFld;
     var $registerBtn;
     var userService = new UserService();
-//    $(main);
+    $(main);
 
-//    function main() { … }
-//    function register() { … }
+    function main() {
+    	
+    	$registerBtn = $('#registerBtn');
+    	$registerBtn.click(register);
+    }
+    
+    function register() {
+    	console.log("hitting register");
+    }
 })();

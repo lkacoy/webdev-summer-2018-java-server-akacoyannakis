@@ -1,13 +1,15 @@
 (function () {
     var $usernameFld, $passwordFld;
-    var $loginBtn;
+    var $loginBtn, $registerBtn;
     var userService = new UserServiceClient();
     $(main);
 
     function main() {
     	
     	$loginBtn = $('#login');
+    	$registerBtn = $('#registerBtn');
     	$loginBtn.click(login);
+    	$registerBtn.click(register);
     	
     }
     
@@ -28,6 +30,10 @@
     	} else {
     		//error
     	}
+    }
+    
+    function register() {
+    	window.location = "/jquery/components/register/register.template.client.html";
     }
     
 })();
