@@ -94,7 +94,20 @@ public class UserService {
 		return null;
 	}
 	
-//	@PutMapping("/api/profile")
-//	public User updateProfile(@RequestBody user, HttpSession session) { … }
+	@PutMapping("/api/profile")
+	public User updateProfile(@RequestBody User user, HttpSession session) {
+		User currentUser = (User) session.getAttribute("user");
+		Optional<User> data = repository.findById(currentUser.getId());
+		
+		if (data.isPresent()) {
+			currentUser = data.get();
+			currentUser.setEmail(user.getEmail());
+			currentUser.setPhone(user.getPhone());
+			currentUser.setDateOfBirth(user.getDateOfBirth());
+			currentUser.setRole(user.getRole());
+			return currentUser;
+		}
+		return null;
+	}
 
 }
