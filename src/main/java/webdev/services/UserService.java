@@ -36,7 +36,9 @@ public class UserService {
 	
 	@PostMapping("/api/login")
 	public List<User> login(@RequestBody User user, HttpSession session) {
-		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+		List<User> users = (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+		session.setAttribute("user", users.get(0)); //add user to the session
+		return users;
 	}
 	
 	@PostMapping("/api/register")

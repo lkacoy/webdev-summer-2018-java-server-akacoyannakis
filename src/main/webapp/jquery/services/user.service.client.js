@@ -5,10 +5,13 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.login = login;
+    this.logout = logout;
     this.url =
         '/api/user';
     this.loginUrl =
         '/api/login';
+    this.logoutUrl = 
+    	'/api/logout';
     var self = this;
     
     function login(username, password) {
@@ -21,6 +24,14 @@ function UserServiceClient() {
         }).then(function (response) {
 			return response.json();
 		});
+    }
+    
+    function logout() {
+    	return fetch(self.logoutUrl, {
+    		method: 'post',
+    	}).then(function (response) {
+    		return response;
+    	})
     }
     
     function deleteUser(userId) {

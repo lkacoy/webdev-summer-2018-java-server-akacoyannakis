@@ -3,11 +3,10 @@
 	
 	$(init);
 	
-	var $emailFld;
-	var $firstNameFld;
-	var $lastNameFld;
+	var $emailFld, $usernameFld;
+	var $firstNameFld, $lastNameFld;
 	var $phoneFld, $roleFld, $dateOfBirth;
-	var $updateBtn;
+	var $updateBtn, $logoutBtn;
 	var userService = new UserServiceClient();
 	
 	function init() {
@@ -18,6 +17,7 @@
 		$roleFld = $("#roleFld");
 		$dateOfBirth = $("#dateOfBirthFld");
 		$updateBtn = $("#updateBtn").click(updateUser);
+		$logoutBtn = $("#logoutBtn").click(logout);
 		findUserById(12);
 	}
 	
@@ -37,6 +37,7 @@
 	
 	function updateUser() {
 		var user = {
+				username: $usernameFld.val(),
 				firstName: $firstNameFld.val(),
 				lastName: $lastNameFld.val(),
 				email: $emailFld.val(),
@@ -55,4 +56,13 @@
 			alert('success');		
 		}
 	}
+	
+	function logout() {
+		userService.logout().then(redirect);
+	}
+	
+	function redirect() {
+		window.location = "/jquery/components/login/login.template.client.html";
+	}
+	
 })();
