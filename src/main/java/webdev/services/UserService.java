@@ -52,12 +52,10 @@ public class UserService {
 	
 	@PostMapping("/api/logout")
 	public User logout(HttpSession session) {
-		User user = new User();
         if (session.getAttribute("user") != null){
-        	user = (User) session.getAttribute("user");
             session.removeAttribute("user");
         }
-        return user;
+        return null;
 	}
 
 	
