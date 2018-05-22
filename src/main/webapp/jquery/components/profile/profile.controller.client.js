@@ -1,9 +1,12 @@
-(function() {
+(function hello() {
+	
+	
 	$(init);
 	
 	var $emailFld;
 	var $firstNameFld;
 	var $lastNameFld;
+	var $phoneFld, $roleFld, $dateOfBirth;
 	var $updateBtn;
 	var userService = new UserServiceClient();
 	
@@ -11,6 +14,9 @@
 		$emailFld = $("#emailFld");
 		$firstNameFld = $("#firstNameFld");
 		$lastNameFld = $("#lastNameFld");
+		$phoneFld = $("#phoneFld");
+		$roleFld = $("#roleFld");
+		$dateOfBirth = $("#dateOfBirthFld");
 		$updateBtn = $("#updateBtn").click(updateUser);
 		findUserById(12);
 	}
@@ -24,12 +30,19 @@
 		$emailFld.val(user.email);
 		$firstNameFld.val(user.firstName);
 		$lastNameFld.val(user.lastName);
+		$phoneFld.val(user.phone);
+		$roleFld.val(user.role);
+		$dateOfBirth.val(user.dateOfBirth);
 	}
 	
 	function updateUser() {
 		var user = {
-				firstName: $firstName.val(),
-				lastName: $lastName.val()
+				firstName: $firstNameFld.val(),
+				lastName: $lastNameFld.val(),
+				email: $emailFld.val(),
+				phone: $phoneFld.val(),
+				role: $roleFld.val(),
+				dateOfBirth: $dateOfBirth.val()
 		};
 		
 		userService.updateUser(12, user).then(success);
