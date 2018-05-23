@@ -71,6 +71,13 @@ public class UserService {
 	public List<User> findAllUsers() {
 		return (List<User>) repository.findAll();
 	}
+	
+	@PostMapping("/api/user/search")
+	public List<User> findAllUsersSearch(@RequestBody User user) {
+		return (List<User>) repository.findUsersBySearch(user.getUsername(), user.getPassword(),
+					user.getFirstName(), user.getLastName(), user.getRole());
+		
+	}
 
 	@GetMapping("/api/user/{userId}")
 	public User findUserById(@PathVariable("userId") int userId) {

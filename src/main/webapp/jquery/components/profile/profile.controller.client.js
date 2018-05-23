@@ -18,7 +18,9 @@
 		$dateOfBirth = $("#dateOfBirthFld");
 		$updateBtn = $("#updateBtn").click(updateUser);
 		$logoutBtn = $("#logoutBtn").click(logout);
-		findUserById(12);
+		
+		var user = getUserAttribute();
+		findUserById(user.userId);
 	}
 	
 	function findUserById(userId) {
@@ -62,7 +64,11 @@
 	}
 	
 	function redirect() {
-		window.location = "/jquery/components/login/login.template.client.html";
+		$(location).attr('href', '/jquery/components/login/login.template.client.html');
+	}
+	
+	function getUserAttribute() {
+		userService.getUserAttribute();
 	}
 	
 })();

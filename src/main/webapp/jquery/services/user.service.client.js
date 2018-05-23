@@ -1,6 +1,7 @@
 function UserServiceClient() {
     this.createUser = createUser;
     this.findAllUsers = findAllUsers;
+    this.findAllUsersSearch = findAllUsersSearch;
     this.deleteUser = deleteUser;
     this.findUserById = findUserById;
     this.updateUser = updateUser;
@@ -52,6 +53,19 @@ function UserServiceClient() {
     			return response.json();
     		});
     }
+    
+  function findAllUsersSearch(user) {
+	return fetch(self.url + '/search', {
+		method: 'post',
+		body: JSON.stringify(user),
+		headers: {
+			'content-type': 'application/json'
+		}
+	})
+		.then(function (response) {
+			return response.json();
+		});
+}
     
     function createUser(user, callback) {
     	return fetch(self.url, {

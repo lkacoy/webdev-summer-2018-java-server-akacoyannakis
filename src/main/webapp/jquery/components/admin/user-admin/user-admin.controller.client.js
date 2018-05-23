@@ -3,8 +3,8 @@
 	$(main); //declare listener on document to wait until load
 	var $userRowTemplate, $tbody;
 	var $usernameFld, $passwordFld;
-	var $removeBtn, $editBtn, $createBtn;
-	var $firstNameFld, $lastNameFld;
+	var $removeBtn, $editBtn, $createBtn, $updateBtn;
+	var $firstNameFld, $lastNameFld, $roleFld;
 	var userService = new UserServiceClient();
 
 	function main() {
@@ -12,14 +12,36 @@
 		$tbody = $('tbody');
 		$userRowTemplate = $('#template');
 		$('#createUser').click(createUser);
+		$('#search').click(search);
+		$('#updateUser').click(updateUser);
 
 		findAllUsers();
+	}
+	
+	function search() {
+		$usernameFld = $('#usernameFld').val();
+		$passwordFld = $('#passwordFld').val();
+		$firstNameFld = $('#firstNameFld').val();
+		$lastNameFld = $('#lastNameFld').val();
+
+		var user = {
+			username : $usernameFld,
+			password : $passwordFld,
+			firstName : $firstNameFld,
+			lastName : $lastNameFld
+		};
+		
+		findAllUsersSearch(user);
 	}
 
 	function findAllUsers() {
 		userService.findAllUsers().then(renderUsers);
 	}
 
+	function findAllUsersSearch(user) {
+		userService.findAllUsersSearch(user).then(renderUsers);
+	}
+	
 	function createUser() {
 		$usernameFld = $('#usernameFld').val();
 		$passwordFld = $('#passwordFld').val();
@@ -76,10 +98,8 @@
 		userService.findUserById(userId).then(renderUser);
 	}
 
-	function updateUser(event) {
-		$editBtn = $(event.currentTarget)
-		$userRowTemplate = $editBtn.parent().parent().parent();
-		$userRowTemplate.prop('contenteditable', false);
+	function updateUser() {
+		console.log("update");
 		var userId = $userRowTemplate.attr('id');
 		
 		$usernameFld = $('#usernameFld').val();
