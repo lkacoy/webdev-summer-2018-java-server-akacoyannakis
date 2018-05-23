@@ -34,10 +34,16 @@ public class UserService {
 	}
 
 	@PostMapping("/api/login")
-	public List<User> login(@RequestBody User user, HttpSession session) {
+	public User login(@RequestBody User user, HttpSession session) {
 		List<User> users = (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
-		session.setAttribute("user", users.get(0)); // add user to the session
-		return users;
+		for (User currentUser : users) {
+			if (currentUser.getUsername().equals(user.getUsername()) &&
+					currentUser.getPassword().equals(user.getPassword())) {
+				session.setAttribute("user", currentUser);
+				return currentUser;
+			}
+		}
+		return null;
 	}
 
 	@PostMapping("/api/register")
@@ -56,6 +62,7 @@ public class UserService {
 	public User logout(HttpSession session) {
 		if (session.getAttribute("user") != null) {
 			session.removeAttribute("user");
+			session.invalidate();
 		}
 		return null;
 	}
@@ -73,7 +80,13 @@ public class UserService {
 		}
 		return null;
 	}
-
+	
+	@GetMapping("/api/profile")
+	public User profile(HttpSession session) {
+		User currentUser = (User) session.getAttribute("user");	
+		return currentUser;
+	}
+	
 	@PutMapping("api/user/{userId}")
 	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
 		Optional<User> data = repository.findById(userId);

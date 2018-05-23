@@ -21,11 +21,12 @@
     }
     
     function handleLogonResult(user) {
-    	var username = user[0].username;
-    	var password = user[0].password;
+    	var username = user.username;
+    	var password = user.password;
     	
     	if (username === $usernameFld && password === $passwordFld) {
     		//success and go to profile
+    		
     		window.location = "/jquery/components/profile/profile.template.client.html";
     	} else {
     		//error

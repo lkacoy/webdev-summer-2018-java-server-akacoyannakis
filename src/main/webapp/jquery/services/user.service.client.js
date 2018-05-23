@@ -7,6 +7,7 @@ function UserServiceClient() {
     this.login = login;
     this.logout = logout;
     this.register = register;
+    this.getUserAttribute = getUserAttribute;
     this.url =
         '/api/user';
     this.loginUrl =
@@ -15,6 +16,8 @@ function UserServiceClient() {
     	'/api/logout';
     this.registerUrl =
     	'/api/register';
+    this.sessionUrl = 
+    	'/api/profile';
     var self = this;
     
     function login(username, password) {
@@ -92,7 +95,19 @@ function UserServiceClient() {
     			'content-type': 'application/json'
     		}
     	})
-    }    
+    } 
+    
+    function getUserAttribute() {
+    	return fetch(self.sessionUrl, {
+    		method: 'get',
+    		headers: {
+    			credentials: 'same-origin'
+    		}
+    	})
+    	.then(function(response) {
+			return response.json();
+		});
+    }
 
 }
 
