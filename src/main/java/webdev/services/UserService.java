@@ -74,6 +74,9 @@ public class UserService {
 	
 	@PostMapping("/api/user/search")
 	public List<User> findAllUsersSearch(@RequestBody User user) {
+		if (user == null) {
+			return (List<User>) repository.findAll();
+		}
 		return (List<User>) repository.findUsersBySearch(user.getUsername(), user.getPassword(),
 					user.getFirstName(), user.getLastName(), user.getRole());
 		
