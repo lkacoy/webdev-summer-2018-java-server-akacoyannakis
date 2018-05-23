@@ -90,8 +90,10 @@
 
 	function editUser(event) {
 		$editBtn = $(event.currentTarget);
-		$userRowTemplate = $editBtn.parent().parent().parent();
-		$userRowTemplate.prop('contenteditable', true);
+		var userId = $editBtn.parent().parent().parent().attr('id');
+		userService.findUserById(userId).then(updateSearchRow);
+//		$userRowTemplate = $editBtn.parent().parent().parent();
+//		$userRowTemplate.prop('contenteditable', true);
 	}
 
 	function findUserById(userId) {
@@ -116,6 +118,14 @@
 		
 		
 		userService.updateUser(userId, user).then(renderUser);
+	}
+	
+	function updateSearchRow(user) {
+		$('#usernameFld').val(user.username);
+		$('#passwordFld').val(user.password);
+		$('#firstNameFld').val(user.firstName);
+		$('#lastNameFld').val(user.lastName);
+		$('#roleFld').val(user.role);
 	}
 
 })();
