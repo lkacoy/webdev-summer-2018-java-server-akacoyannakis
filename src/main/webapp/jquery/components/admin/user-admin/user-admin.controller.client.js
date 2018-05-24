@@ -76,10 +76,15 @@
 	}
 
 	function renderUser(user) {
-		$userRowTemplate.attr('id', user.id);
-		$userRowTemplate.find(".wbdv-username").html(user.username);
-		$userRowTemplate.find(".wbdv-first-name").html(user.username);
-		$userRowTemplate.find(".wbdv-last-name").html(user.username);
+		if (user != null) {
+			$userRowTemplate.attr('id', user.id);
+			$userRowTemplate.find(".wbdv-username").html(user.username);
+			$userRowTemplate.find(".wbdv-first-name").html(user.username);
+			$userRowTemplate.find(".wbdv-last-name").html(user.username);
+		} else {
+			findAllUsers();
+		}
+		
 	}
 
 	function deleteUser(event) {
@@ -92,8 +97,6 @@
 		$editBtn = $(event.currentTarget);
 		var userId = $editBtn.parent().parent().parent().attr('id');
 		userService.findUserById(userId).then(updateSearchRow);
-//		$userRowTemplate = $editBtn.parent().parent().parent();
-//		$userRowTemplate.prop('contenteditable', true);
 	}
 
 	function findUserById(userId) {
@@ -108,12 +111,15 @@
 		$passwordFld = $('#passwordFld').val();
 		$firstNameFld = $('#firstNameFld').val();
 		$lastNameFld = $('#lastNameFld').val();
+		$roleFld = $('#roleFld').val();
 
 		var user = {
+			id: userId,	
 			username : $usernameFld,
 			password : $passwordFld,
 			firstName : $firstNameFld,
-			lastName : $lastNameFld
+			lastName : $lastNameFld,
+			role: $roleFld
 		};
 		
 		
@@ -121,6 +127,7 @@
 	}
 	
 	function updateSearchRow(user) {
+		$userRowTemplate.attr('id', user.id);
 		$('#usernameFld').val(user.username);
 		$('#passwordFld').val(user.password);
 		$('#firstNameFld').val(user.firstName);
