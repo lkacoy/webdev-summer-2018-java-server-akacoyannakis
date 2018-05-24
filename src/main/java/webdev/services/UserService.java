@@ -103,6 +103,11 @@ public class UserService {
 		if (data.isPresent()) {
 			User user = data.get();
 			user.setFirstName(newUser.getFirstName());
+			user.setLastName(newUser.getLastName());
+			user.setEmail(newUser.getEmail());
+			user.setPassword(newUser.getPassword());
+			user.setPhone(newUser.getPhone());
+			user.setRole(newUser.getRole());
 			repository.save(user);
 			return user;
 		}
