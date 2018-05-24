@@ -16,11 +16,12 @@
 		$phoneFld = $("#phoneFld");
 		$roleFld = $("#roleFld");
 		$dateOfBirth = $("#dateOfBirthFld");
+		$usernameFld = $('#usernameFld');
 		$updateBtn = $("#updateBtn").click(updateUser);
 		$logoutBtn = $("#logoutBtn").click(logout);
 		
-		var user = getUserAttribute();
-		findUserById(user.userId);
+		//var user = getUserAttribute(); session is still not working correctly
+		findUserById(12);
 	}
 	
 	function findUserById(userId) {
@@ -29,12 +30,22 @@
 	
 	function renderUser(user) {
 		console.log(user);
+		$usernameFld.val(user.username);
 		$emailFld.val(user.email);
 		$firstNameFld.val(user.firstName);
 		$lastNameFld.val(user.lastName);
 		$phoneFld.val(user.phone);
 		$roleFld.val(user.role);
-		$dateOfBirth.val(user.dateOfBirth);
+		
+		//calculate date in the proper format for datepicker
+		var date = new Date(user.dateOfBirth);
+		var month = date.getMonth() + 1;
+		if (month < 10) {
+			month = '0' + month;
+		}
+		var newDate = date.getFullYear()+"-"+month+"-"+date.getDate();
+		
+		$dateOfBirth.val(newDate);
 	}
 	
 	function updateUser() {
@@ -68,7 +79,13 @@
 	}
 	
 	function getUserAttribute() {
-		userService.getUserAttribute();
+		userService.getUserAttribute().then(handleUserAttribute);
+	}
+	
+	function handleUserAttribute(response) {
+		if (response.ok) {
+			console.log(response);
+		}
 	}
 	
 })();
