@@ -23,7 +23,7 @@
     		}
     		userService.register(user);
     	} else {
-    		//display error
+    		alert("Passwords do not match");
     	}
     }
 })();
