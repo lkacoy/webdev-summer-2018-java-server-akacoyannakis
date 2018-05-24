@@ -108,6 +108,7 @@ public class UserService {
 			user.setPassword(newUser.getPassword());
 			user.setPhone(newUser.getPhone());
 			user.setRole(newUser.getRole());
+			user.setDateOfBirth(newUser.getDateOfBirth());
 			repository.save(user);
 			return user;
 		}

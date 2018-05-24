@@ -93,9 +93,10 @@ function UserServiceClient() {
             }
     	})
 		.then(function(response) {
-			if (response.bodyUsed) {
-				return response.json();
+			if (response.ok) {
+				return response;
 			} else {
+				console.log("UserServiceClient::updateUser: ", error);
 				return null;
 			}
 		});
