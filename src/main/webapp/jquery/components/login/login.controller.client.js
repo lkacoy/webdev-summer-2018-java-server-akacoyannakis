@@ -27,9 +27,10 @@
     	if (username === $usernameFld && password === $passwordFld) {
     		//success and go to profile
     		
-    		window.location = "/jquery/components/profile/profile.template.client.html";
+    		window.location = "/jquery/components/profile/profile.template.client.html?userId="+user.id;
     	} else {
     		//error
+    		console.debug("Username and Password do not match");
     	}
     }
     

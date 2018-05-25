@@ -20,8 +20,11 @@
 		$updateBtn = $("#updateBtn").click(updateUser);
 		$logoutBtn = $("#logoutBtn").click(logout);
 		
+		var url = window.location.search.substring(1);
+		var userId = url.substr(url.indexOf('=')+1); 
+		
 		//var user = getUserAttribute(); session is still not working correctly
-		findUserById(12);
+		findUserById(userId);
 	}
 	
 	function findUserById(userId) {
