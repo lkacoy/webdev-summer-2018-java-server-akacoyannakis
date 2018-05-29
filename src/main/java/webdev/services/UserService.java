@@ -1,5 +1,6 @@
 package webdev.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,6 +71,14 @@ public class UserService {
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {
 		return (List<User>) repository.findAll();
+	}
+	
+	@GetMapping("/api/session/set/{attr}/{value}")
+	public String setSessionAttribute(@PathVariable("attr") String attr,
+										@PathVariable("value") String value,
+										HttpSession session) {
+		session.setAttribute(attr, value);
+		return attr +" = " + value;
 	}
 	
 	@PostMapping("/api/user/search")
