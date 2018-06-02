@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +18,8 @@ public class Course {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
+	@ManyToOne
+	private User ownedBy;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -36,6 +39,12 @@ public class Course {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public User getOwnedBy() {
+		return ownedBy;
+	}
+	public void setOwnedBy(User ownedBy) {
+		this.ownedBy = ownedBy;
 	}
 	public Date getCreated() {
 		return created;
