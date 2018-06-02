@@ -43,8 +43,7 @@ public class ModuleService {
 	}
 	
 	@GetMapping("/api/course/{courseId}/module")
-	public List<Module> findAllModulesForCourse(
-			@PathVariable("courseId") int courseId) {
+	public List<Module> findAllModulesForCourse(@PathVariable("courseId") int courseId) {
 		Optional<Course> data = courseRepository.findById(courseId);
 		if(data.isPresent()) {
 			Course course = data.get();
@@ -53,13 +52,22 @@ public class ModuleService {
 		return null;		
 	}
 	
-	@DeleteMapping("/api/course/{courseId}/module/{moduleId}")
-	public void deleteModule(@PathVariable("courseId") int courseId,
-						@PathVariable("moduleId") int moduleId) {
+	@GetMapping("/api/module/{moduleId}")
+	public Module findModuleById(@PathVariable("moduleId") int moduleId) {
+		Optional<Module> data = moduleRepository.findById(moduleId);
+		if (data.isPresent()) {
+			Module module = data.get();
+			return module;
+		}
+		return null;
+	}
+	
+	@DeleteMapping("/api/module/{moduleId}")
+	public void deleteModule(@PathVariable("moduleId") int moduleId) {
 		moduleRepository.deleteById(moduleId);
 	} 
 	
-	@PutMapping("/api/course/{courseId}/module/{moduleId}")
+	@PutMapping("/api/module/{moduleId}")
 	public Module  updateModule(@RequestBody Module module, HttpSession session) {
 		Module currentModule = (Module) session.getAttribute("module");
 		Optional<Module> data = moduleRepository.findById(currentModule.getId());
