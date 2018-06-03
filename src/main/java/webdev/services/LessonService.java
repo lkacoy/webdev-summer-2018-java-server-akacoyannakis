@@ -70,6 +70,7 @@ public class LessonService {
 			currentLesson.setId(lesson.getId());
 			currentLesson.setModule(lesson.getModule());
 			currentLesson.setTitle(lesson.getTitle());
+			currentLesson.setTopics(lesson.getTopics());
 			return currentLesson;
 		}
 		return null;

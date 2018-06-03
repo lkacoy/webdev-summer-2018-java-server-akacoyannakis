@@ -14,6 +14,7 @@ public class Lesson {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
+	private String[] topics;
 	@ManyToOne
 	@JsonIgnore
 	private Module module;
@@ -34,6 +35,12 @@ public class Lesson {
 	}
 	public void setModule(Module module) {
 		this.module = module;
+	}
+	public String[] getTopics() {
+		return topics;
+	}
+	public void setTopics(String[] topics) {
+		this.topics = topics;
 	}
 
 	
