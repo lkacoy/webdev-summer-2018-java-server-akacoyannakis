@@ -55,14 +55,12 @@ public class LessonService {
 		return null;		
 	}
 	
-	@DeleteMapping("/api/course/{courseId}/module/{moduleId}/lesson/{lessonId")
-	public void deleteLesson(@PathVariable("courseId") int courseId,
-			@PathVariable("moduleId") int moduleId,
-			@PathVariable("lessonId") int lessonId) {
+	@DeleteMapping("/api/lesson/{lessonId}")
+	public void deleteLesson(@PathVariable("lessonId") int lessonId) {
 		lessonRepository.deleteById(lessonId);
 	}
 	
-	@PutMapping("/api/course/{courseId}/module/{moduleId}/lesson/{lessonId}")
+	@PutMapping("/api/lesson/{lessonId}")
 	public Lesson updateLesson(@RequestBody Lesson lesson, HttpSession session) {
 		Lesson currentLesson = (Lesson) session.getAttribute("lesson");
 		Optional<Lesson> data = lessonRepository.findById(currentLesson.getId());
