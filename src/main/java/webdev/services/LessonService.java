@@ -55,6 +55,17 @@ public class LessonService {
 		return null;		
 	}
 	
+	@GetMapping("/api/lesson/{lessonId}")
+	public Lesson findLessonById(@PathVariable("lessonId") int lessonId) {
+		Optional<Lesson> data = lessonRepository.findById(lessonId);
+		
+		if (data.isPresent()) {
+			Lesson lesson = data.get();
+			return lesson;
+		}
+		return null;
+	}
+	
 	@DeleteMapping("/api/lesson/{lessonId}")
 	public void deleteLesson(@PathVariable("lessonId") int lessonId) {
 		lessonRepository.deleteById(lessonId);
