@@ -17,10 +17,11 @@ public class Lesson {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
-	private String[] topics;
 	@ManyToOne
 	@JsonIgnore
 	private Module module;
+	@OneToMany(mappedBy="lesson", orphanRemoval = true)
+	private List<Topic> topics;
 	@OneToMany(mappedBy="lesson")
 	@JsonIgnore
 	private List<Widget> widgets;
@@ -42,10 +43,10 @@ public class Lesson {
 	public void setModule(Module module) {
 		this.module = module;
 	}
-	public String[] getTopics() {
+	public List<Topic> getTopics() {
 		return topics;
 	}
-	public void setTopics(String[] topics) {
+	public void setTopics(List<Topic> topics) {
 		this.topics = topics;
 	}
 	public List<Widget> getWidgets() {
