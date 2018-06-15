@@ -21,7 +21,7 @@ import webdev.repositories.WidgetRepository;
 public class WidgetService {
 	
 	@Autowired
-	WidgetRepository repository;
+	WidgetRepository widgetRepository;
 	@Autowired
 	LessonRepository lessonRepository;
 	
@@ -38,14 +38,24 @@ public class WidgetService {
 	@PostMapping("/api/widget/save")
 	public void saveAllWidgets(@RequestBody
 			List<Widget> widgets) {
-		repository.deleteAll();
+		widgetRepository.deleteAll();
 		for(Widget widget: widgets) {
-			repository.save(widget);
+			widgetRepository.save(widget);
 		}
 	}
 	
 	@GetMapping("/api/widget")
 	public List<Widget> findAllWidgets() {
-		return (List<Widget>) repository.findAll();
+		return (List<Widget>) widgetRepository.findAll();
+	}
+	
+	@GetMapping("/api/widget/{widgetId}")
+	public Widget findWidgetById(@PathVariable("widgetId") int widgetId) {
+		Optional<Widget> optionalWidget = widgetRepository.findById(widgetId);
+		if (optionalWidget.isPresent()) {
+			Widget widget = optionalWidget.get();
+			return widget;
+		}
+		return null;
 	}
 }
