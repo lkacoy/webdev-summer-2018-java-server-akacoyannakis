@@ -15,7 +15,7 @@ public class Widget {
 	private int id;
 	private String text;
 	private String widgetType;
-	private int order;
+	//private int order;
 	@ManyToOne
 	@JsonIgnore
 	private Lesson lesson;
