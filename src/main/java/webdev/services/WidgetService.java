@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,15 +36,6 @@ public class WidgetService {
 		return null;
 	}
 	
-	@PostMapping("/api/widget/save")
-	public void saveAllWidgets(@RequestBody
-			List<Widget> widgets) {
-		widgetRepository.deleteAll();
-		for(Widget widget: widgets) {
-			widgetRepository.save(widget);
-		}
-	}
-	
 	@GetMapping("/api/widget")
 	public List<Widget> findAllWidgets() {
 		return (List<Widget>) widgetRepository.findAll();
@@ -57,5 +49,24 @@ public class WidgetService {
 			return widget;
 		}
 		return null;
+	}
+	
+	
+	@PostMapping("/api/widget/save")
+	public void saveAllWidgets(@RequestBody
+			List<Widget> widgets) {
+		widgetRepository.deleteAll();
+		for(Widget widget: widgets) {
+			widgetRepository.save(widget);
+		}
+	}
+	
+	//POST for /api/lesson/:lessonId/widget
+	
+	//PUT for /api/widget/:widgetId
+	
+	@DeleteMapping("/api/widget/{widgetId}")
+	public void deleteWidgetById(@PathVariable("widgetId") int widgetId) {
+		widgetRepository.deleteById(widgetId);
 	}
 }
