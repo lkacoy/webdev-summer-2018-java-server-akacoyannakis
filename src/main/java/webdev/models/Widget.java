@@ -13,9 +13,14 @@ public class Widget {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	private String name;
+	private int order;
 	private String text;
 	private String widgetType;
-	//private int order;
+	private String style;
+	private String width;
+	private String height;
+	
 	@ManyToOne
 	@JsonIgnore
 	private Lesson lesson;
@@ -43,6 +48,36 @@ public class Widget {
 	}
 	public void setLesson(Lesson lesson) {
 		this.lesson = lesson;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getOrder() {
+		return order;
+	}
+	public void setOrder(int order) {
+		this.order = order;
+	}
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public String getWidth() {
+		return width;
+	}
+	public void setWidth(String width) {
+		this.width = width;
+	}
+	public String getHeight() {
+		return height;
+	}
+	public void setHeight(String height) {
+		this.height = height;
 	}
 	
 	
