@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -62,8 +63,38 @@ public class WidgetService {
 	}
 	
 	//POST for /api/lesson/:lessonId/widget
+	@PostMapping("/api/lesson/{lessonId}/widget")
+	public void saveWidgetToLesson(@PathVariable("lessonId") int lessonId, @RequestBody Widget widget) {
+		Optional<Lesson> optionalLesson = lessonRepository.findById(lessonId);
+		if (optionalLesson.isPresent()) {
+			widget.setLesson(optionalLesson.get());
+			widgetRepository.save(widget);
+		}
+	}
 	
 	//PUT for /api/widget/:widgetId
+	@PutMapping("/api/widget/{widgetId}")
+	public Widget updateWidget(@PathVariable("widgetId") int widgetId, @RequestBody Widget newWidget) {
+		Optional<Widget> optionalWidget = widgetRepository.findById(widgetId);
+		if (optionalWidget.isPresent()) {
+			Widget widget = optionalWidget.get();
+			widget.setId(newWidget.getId());
+			widget.setHeight(newWidget.getHeight());
+			widget.setLesson(newWidget.getLesson());
+			widget.setName(newWidget.getName());
+			widget.setOrder(newWidget.getOrder());
+			widget.setStyle(newWidget.getStyle());
+			widget.setText(newWidget.getText());
+			widget.setWidgetType(newWidget.getWidgetType());
+			widget.setWidth(newWidget.getWidth());
+			
+			//will need to check for subclasses
+			
+			return widget;
+		}
+		return null;
+	}
+	
 	
 	@DeleteMapping("/api/widget/{widgetId}")
 	public void deleteWidgetById(@PathVariable("widgetId") int widgetId) {
