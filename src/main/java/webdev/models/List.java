@@ -1,10 +1,12 @@
 package webdev.models;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
+@DiscriminatorColumn(name="widget_type")
 public class List extends Widget {
 
 	private String listItems;
