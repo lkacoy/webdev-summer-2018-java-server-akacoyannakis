@@ -64,11 +64,21 @@ public class WidgetService {
 	
 	//POST for /api/lesson/:lessonId/widget
 	@PostMapping("/api/lesson/{lessonId}/widget")
-	public void saveWidgetToLesson(@PathVariable("lessonId") int lessonId, @RequestBody Widget widget) {
+	public void saveWidgetToLesson(@PathVariable("lessonId") int lessonId, @RequestBody List<Widget> widgets) {
 		Optional<Lesson> optionalLesson = lessonRepository.findById(lessonId);
 		if (optionalLesson.isPresent()) {
-			widget.setLesson(optionalLesson.get());
-			widgetRepository.save(widget);
+			
+			//check if existing widgets exist for lesson
+			Optional<Widget> optionalWidget = widgetRepository.findById(lessonId);
+			if (optionalWidget.isPresent()) {
+				widgetRepository.deleteById(lessonId);
+			}
+			
+			//add widgets
+			for(Widget widget: widgets) {
+				widget.setLesson(optionalLesson.get());
+				widgetRepository.save(widget);
+			}
 		}
 	}
 	
