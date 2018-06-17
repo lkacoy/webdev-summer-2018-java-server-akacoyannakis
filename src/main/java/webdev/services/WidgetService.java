@@ -98,7 +98,13 @@ public class WidgetService {
 			widget.setWidgetType(newWidget.getWidgetType());
 			widget.setWidth(newWidget.getWidth());
 			
-			//will need to check for subclasses
+			//subclass information
+			widget.setHref(newWidget.getHref());
+			widget.setListItems(newWidget.getListItems());
+			widget.setListType(newWidget.getListType());
+			widget.setSize(newWidget.getSize());
+			widget.setSrc(newWidget.getSrc());
+			
 			
 			return widget;
 		}
