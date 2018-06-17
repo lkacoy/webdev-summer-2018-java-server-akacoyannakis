@@ -25,7 +25,7 @@ public class Widget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private int order;
+	private int orderNumber;
 	private String text;
 	private String widgetType;
 	private String style;
@@ -82,10 +82,10 @@ public class Widget {
 		this.name = name;
 	}
 	public int getOrder() {
-		return order;
+		return orderNumber;
 	}
 	public void setOrder(int order) {
-		this.order = order;
+		this.orderNumber = order;
 	}
 	public String getStyle() {
 		return style;
