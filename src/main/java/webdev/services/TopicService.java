@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import webdev.models.Lesson;
@@ -32,4 +34,17 @@ public class TopicService {
 		}
 		return null;
 	}
+	
+	@PostMapping("/api/lesson/{lessonId}/topic") 
+	public Topic createTopic(@PathVariable("lessonId") int lessonId, 
+			@RequestBody Topic newTopic) {
+		Optional<Lesson> data = lessonRepository.findById(lessonId);
+		if(data.isPresent()) {
+			Lesson lesson = data.get();
+			newTopic.setLesson(lesson);
+			return topicRepository.save(newTopic);
+		}
+		return null;
+
+	} 
 }
