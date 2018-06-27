@@ -1,5 +1,66 @@
 package webdev.models;
 
-public class Assignment {
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+public class Assignment {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	private int points;
+	private String title;
+	private String description;
+	@ManyToOne
+	@JsonIgnore
+	private Lesson lesson;
+	@OneToMany
+	@JsonIgnore
+	private List<BaseExamQuestion> questions;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int points) {
+		this.points = points;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Lesson getLesson() {
+		return lesson;
+	}
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
+	}
+	public List<BaseExamQuestion> getQuestions() {
+		return questions;
+	}
+	public void setQuestions(List<BaseExamQuestion> questions) {
+		this.questions = questions;
+	}
+	
+	
 }
