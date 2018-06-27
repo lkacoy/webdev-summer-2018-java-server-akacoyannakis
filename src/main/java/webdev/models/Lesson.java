@@ -28,6 +28,9 @@ public class Lesson {
 	@OneToMany(mappedBy="lesson")
 	@JsonIgnore
 	private List<Exam> exams;
+	@OneToMany(mappedBy="lesson")
+	@JsonIgnore
+	private List<Assignment> assignments;
 	public int getId() {
 		return id;
 	}
@@ -63,6 +66,12 @@ public class Lesson {
 	}
 	public void setExams(List<Exam> exams) {
 		this.exams = exams;
+	}
+	public List<Assignment> getAssignments() {
+		return assignments;
+	}
+	public void setAssignments(List<Assignment> assignments) {
+		this.assignments = assignments;
 	}
 
 	
