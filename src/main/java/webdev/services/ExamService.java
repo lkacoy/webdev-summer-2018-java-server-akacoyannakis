@@ -32,6 +32,8 @@ public class ExamService {
 	TrueFalseQuestionRepository trueFalseRepository;
 	@Autowired
 	MultipleChoicesQuestionRepository mutiRepo;
+	@Autowired
+	LessonRepository lessonRepository;
 	
 	@GetMapping("/api/exam")
 	public Iterable<Exam> findAllExams() {
@@ -44,6 +46,17 @@ public class ExamService {
 		if (optional.isPresent()) {
 			return optional.get();
 		}
+		return null;
+	}
+	
+	@GetMapping("api/lesson/{lid}/exam")
+	public List<Exam> findExamsByLessonId(@PathVariable("lid") int lessonId) {
+		Optional<Lesson> optional = lessonRepository.findById(lessonId);
+		if (optional.isPresent()) {
+			Lesson lesson = optional.get();
+			return lesson.getExams();
+		}
+		
 		return null;
 	}
 	
