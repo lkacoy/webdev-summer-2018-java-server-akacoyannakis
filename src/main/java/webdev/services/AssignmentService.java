@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import webdev.models.Assignment;
@@ -43,6 +45,18 @@ public class AssignmentService {
 		if (optional.isPresent()) {
 			Lesson lesson = optional.get();
 			return lesson.getAssignments();
+		}
+		return null;
+	}
+	
+	@PostMapping("/api/lesson/{lid}/assignment")
+	public Assignment createNewAssignment(@PathVariable("lid") int lessonId,
+			@RequestBody Assignment newAssignment) {
+		Optional<Lesson> optional = lessonRepository.findById(lessonId);
+		if (optional.isPresent()) {
+			Lesson lesson = optional.get();
+			newAssignment.setLesson(lesson);
+			return newAssignment;
 		}
 		return null;
 	}
