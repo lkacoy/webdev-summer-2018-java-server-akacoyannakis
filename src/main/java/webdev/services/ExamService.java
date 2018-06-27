@@ -38,6 +38,15 @@ public class ExamService {
 		return examRepository.findAll();
 	}
 
+	@GetMapping("/api/exam/{eid}")
+	public Exam findExamById(@PathVariable("eid") int examId) {
+		Optional<Exam> optional = examRepository.findById(examId);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+	}
+	
 	@GetMapping("/api/multi/{questionId}")
 	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
 		Optional<MultipleChoiceQuestion> optional = mutiRepo.findById(questionId);
