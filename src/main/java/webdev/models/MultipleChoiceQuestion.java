@@ -1,8 +1,10 @@
 package webdev.models;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "MULTIPLE_CHOICE_QUESTION")
 public class MultipleChoiceQuestion extends BaseExamQuestion {
 	private String options;
 	private int correctOption;
