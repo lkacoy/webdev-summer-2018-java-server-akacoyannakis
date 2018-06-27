@@ -15,7 +15,7 @@ import webdev.models.Exam;
 import webdev.models.Lesson;
 import webdev.models.MultipleChoiceQuestion;
 import webdev.models.BaseExamQuestion;
-import webdev.models.TrueFalseQuestion;
+import webdev.models.TrueFalseExamQuestion;
 import webdev.models.Widget;
 import webdev.repositories.ExamRepository;
 import webdev.repositories.LessonRepository;
@@ -43,8 +43,8 @@ public class ExamService {
 	}
 
 	@GetMapping("/api/truefalse/{questionId}")
-	public TrueFalseQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<TrueFalseQuestion> optional = trueFalseRepository.findById(questionId);
+	public TrueFalseExamQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
+		Optional<TrueFalseExamQuestion> optional = trueFalseRepository.findById(questionId);
 		if(optional.isPresent()) {
 			return optional.get();
 		}

@@ -2,9 +2,9 @@ package webdev.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import webdev.models.TrueFalseQuestion;
+import webdev.models.TrueFalseExamQuestion;
 
 public interface TrueFalseQuestionRepository
-	extends CrudRepository<TrueFalseQuestion, Integer> {
+	extends CrudRepository<TrueFalseExamQuestion, Integer> {
 	
 }
