@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "JOINED_TRUE_OR_FALSE_QUESTION")
+@Table(name = "TRUE_OR_FALSE_QUESTION")
 public class TrueFalseExamQuestion
 	extends BaseExamQuestion {
 	@Column(name = "IS_TRUE", nullable = false)

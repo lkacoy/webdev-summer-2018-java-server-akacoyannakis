@@ -9,7 +9,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "JOINED_BASE_QUESTION")
+@Table(name = "BASE_QUESTION")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class BaseExamQuestion {
 	@Id
