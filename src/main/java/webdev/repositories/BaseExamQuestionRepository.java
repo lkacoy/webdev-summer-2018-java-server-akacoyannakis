@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import webdev.models.BaseExamQuestion;
 
-public interface BaseQuestionRepository extends CrudRepository<BaseExamQuestion, Integer> {
+public interface BaseExamQuestionRepository extends CrudRepository<BaseExamQuestion, Integer> {
 
 }
