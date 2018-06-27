@@ -60,6 +60,18 @@ public class ExamService {
 		return null;
 	}
 	
+	@PostMapping("/api/lesson/{lid}/exam")
+	public Exam createExam(@PathVariable("lid") int lessonId,
+			@RequestBody Exam newExam) {
+		Optional<Lesson> optional = lessonRepository.findById(lessonId);
+		if (optional.isPresent()) {
+			Lesson lesson = optional.get();
+			newExam.setLesson(lesson);
+			return examRepository.save(newExam);
+		}
+		return null;
+	}
+	
 	@GetMapping("/api/multi/{questionId}")
 	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
 		Optional<MultipleChoiceQuestion> optional = mutiRepo.findById(questionId);
