@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Exam extends Widget {
 	private String title;
 	private String description;
+	private int points;
 	@OneToMany(mappedBy="exam")
 	@JsonIgnore
 	private List<Question> questions;
@@ -25,6 +26,12 @@ public class Exam extends Widget {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int points) {
+		this.points = points;
 	}
 	public List<Question> getQuestions() {
 		return questions;
