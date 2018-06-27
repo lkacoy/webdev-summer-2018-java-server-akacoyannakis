@@ -161,6 +161,15 @@ public class ExamService {
 		return null;
 	}
 	
+	@GetMapping("/api/fillInBlanks/{questionId}") 
+	public FillInTheBlanksExamQuestion findFillInBlanksQuestionById(@PathVariable("questionId") int questionId) {
+		Optional<FillInTheBlanksExamQuestion> optional = fillInBlanksRepository.findById(questionId);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+	}
+	
 	@GetMapping("/api/exam/{examId}/question")
 	public List<BaseExamQuestion> findAllQuestionsForExam(@PathVariable("examId") int examId) {
 		Optional<Exam> optionalExam = examRepository.findById(examId);
