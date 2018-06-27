@@ -3,7 +3,7 @@ package webdev.models;
 import javax.persistence.Entity;
 
 @Entity
-public class MultipleChoiceQuestion extends Question {
+public class MultipleChoiceQuestion extends BaseExamQuestion {
 	private String options;
 	private int correctOption;
 	public String getOptions() {
