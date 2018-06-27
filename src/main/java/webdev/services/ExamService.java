@@ -122,6 +122,18 @@ public class ExamService {
 		return null;
 	}
 	
+	@PostMapping("/api/exam/{eid}/truefalse")
+	public TrueFalseExamQuestion createTrueFalseQuestion(@PathVariable("eid") int examId,
+			@RequestBody TrueFalseExamQuestion newTrueFalseQuestion) {
+		Optional<Exam> optional = examRepository.findById(examId);
+		if (optional.isPresent()) {
+			Exam exam = optional.get();
+			newTrueFalseQuestion.setExam(exam);
+			return trueFalseRepository.save(newTrueFalseQuestion);
+		}
+		return null;
+	}
+	
 	@GetMapping("/api/multi/{questionId}")
 	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
 		Optional<MultipleChoiceQuestion> optional = multipleChoiceRepository.findById(questionId);
