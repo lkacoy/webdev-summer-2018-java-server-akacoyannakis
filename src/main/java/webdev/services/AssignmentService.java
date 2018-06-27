@@ -1,5 +1,6 @@
 package webdev.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import webdev.models.Assignment;
+import webdev.models.Lesson;
 import webdev.repositories.AssignmentRepository;
 import webdev.repositories.LessonRepository;
 
@@ -31,6 +33,16 @@ public class AssignmentService {
 		Optional<Assignment> optional = assignmentRepository.findById(assignmentId);
 		if (optional.isPresent()) {
 			return optional.get();
+		}
+		return null;
+	}
+	
+	@GetMapping("/api/lesson/{lid}/assignment")
+	public List<Assignment> findAssignmentsByLessonId(@PathVariable("lid") int lessonId) {
+		Optional<Lesson> optional = lessonRepository.findById(lessonId);
+		if (optional.isPresent()) {
+			Lesson lesson = optional.get();
+			return lesson.getAssignments();
 		}
 		return null;
 	}
