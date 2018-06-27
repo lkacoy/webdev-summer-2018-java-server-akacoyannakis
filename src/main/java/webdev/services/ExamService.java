@@ -32,6 +32,11 @@ public class ExamService {
 	TrueFalseQuestionRepository trueFalseRepository;
 	@Autowired
 	MultipleChoicesQuestionRepository mutiRepo;
+	
+	@GetMapping("/api/exam")
+	public Iterable<Exam> findAllExams() {
+		return examRepository.findAll();
+	}
 
 	@GetMapping("/api/multi/{questionId}")
 	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
