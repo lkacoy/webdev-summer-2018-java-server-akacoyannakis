@@ -6,7 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "BASE_QUESTION")
@@ -19,6 +22,9 @@ public class BaseExamQuestion {
 	private String title;
 	private String description;
 	private String instructions;
+	@ManyToOne
+	@JsonIgnore
+	private Exam exam;
 	public int getId() {
 		return id;
 	}
@@ -49,4 +55,11 @@ public class BaseExamQuestion {
 	public void setInstructions(String instructions) {
 		this.instructions = instructions;
 	}
+	public Exam getExam() {
+		return exam;
+	}
+	public void setExam(Exam exam) {
+		this.exam = exam;
+	}
+	
 }
