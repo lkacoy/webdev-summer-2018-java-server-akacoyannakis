@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import webdev.models.Exam;
+import webdev.models.FillInTheBlanksExamQuestion;
 import webdev.models.Lesson;
 import webdev.models.MultipleChoiceQuestion;
 import webdev.models.BaseExamQuestion;
@@ -21,6 +22,7 @@ import webdev.models.TrueFalseExamQuestion;
 import webdev.models.Widget;
 import webdev.repositories.EssayQuestionRepository;
 import webdev.repositories.ExamRepository;
+import webdev.repositories.FillInTheBlanksQuestionRepository;
 import webdev.repositories.LessonRepository;
 import webdev.repositories.MultipleChoicesQuestionRepository;
 import webdev.repositories.TrueFalseQuestionRepository;
@@ -37,6 +39,8 @@ public class ExamService {
 	MultipleChoicesQuestionRepository multipleChoiceRepository;
 	@Autowired
 	EssayQuestionRepository essayRepository;
+	@Autowired
+	FillInTheBlanksQuestionRepository fillInBlanksRepository;
 	@Autowired
 	LessonRepository lessonRepository;
 	
@@ -102,6 +106,18 @@ public class ExamService {
 			Exam exam = optional.get();
 			newMultipleChoiceQuestion.setExam(exam);
 			return multipleChoiceRepository.save(newMultipleChoiceQuestion);
+		}
+		return null;
+	}
+	
+	@PostMapping("/api/exam/{eid}/blanks")
+	public FillInTheBlanksExamQuestion createFillInBlanksQuestion(@PathVariable("eid") int examId,
+			@RequestBody FillInTheBlanksExamQuestion newFillInBlanksQuestion) {
+		Optional<Exam> optional = examRepository.findById(examId);
+		if (optional.isPresent()) {
+			Exam exam = optional.get();
+			newFillInBlanksQuestion.setExam(exam);
+			return fillInBlanksRepository.save(newFillInBlanksQuestion);
 		}
 		return null;
 	}
