@@ -34,7 +34,7 @@ public class ExamService {
 	@Autowired
 	TrueFalseQuestionRepository trueFalseRepository;
 	@Autowired
-	MultipleChoicesQuestionRepository mutiRepo;
+	MultipleChoicesQuestionRepository multipleChoiceRepository;
 	@Autowired
 	EssayQuestionRepository essayRepository;
 	@Autowired
@@ -94,9 +94,21 @@ public class ExamService {
 		return null;
 	}
 	
+	@PostMapping("/api/exam/{eid}/choice")
+	public MultipleChoiceQuestion createMultipleChoiceQuestion(@PathVariable("eid") int examId,
+			@RequestBody MultipleChoiceQuestion newMultipleChoiceQuestion) {
+		Optional<Exam> optional = examRepository.findById(examId);
+		if (optional.isPresent()) {
+			Exam exam = optional.get();
+			newMultipleChoiceQuestion.setExam(exam);
+			return multipleChoiceRepository.save(newMultipleChoiceQuestion);
+		}
+		return null;
+	}
+	
 	@GetMapping("/api/multi/{questionId}")
 	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<MultipleChoiceQuestion> optional = mutiRepo.findById(questionId);
+		Optional<MultipleChoiceQuestion> optional = multipleChoiceRepository.findById(questionId);
 		if(optional.isPresent()) {
 			return optional.get();
 		}
