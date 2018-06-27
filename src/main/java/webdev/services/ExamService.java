@@ -19,14 +19,12 @@ import webdev.models.MultipleChoiceQuestion;
 import webdev.models.BaseExamQuestion;
 import webdev.models.EssayExamQuestion;
 import webdev.models.TrueFalseExamQuestion;
-import webdev.models.Widget;
 import webdev.repositories.EssayQuestionRepository;
 import webdev.repositories.ExamRepository;
 import webdev.repositories.FillInTheBlanksQuestionRepository;
 import webdev.repositories.LessonRepository;
 import webdev.repositories.MultipleChoicesQuestionRepository;
 import webdev.repositories.TrueFalseQuestionRepository;
-import webdev.repositories.WidgetRepository;
 
 @RestController
 @CrossOrigin(origins = "*")
