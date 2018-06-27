@@ -16,8 +16,10 @@ import webdev.models.Exam;
 import webdev.models.Lesson;
 import webdev.models.MultipleChoiceQuestion;
 import webdev.models.BaseExamQuestion;
+import webdev.models.EssayExamQuestion;
 import webdev.models.TrueFalseExamQuestion;
 import webdev.models.Widget;
+import webdev.repositories.EssayQuestionRepository;
 import webdev.repositories.ExamRepository;
 import webdev.repositories.LessonRepository;
 import webdev.repositories.MultipleChoicesQuestionRepository;
@@ -33,6 +35,8 @@ public class ExamService {
 	TrueFalseQuestionRepository trueFalseRepository;
 	@Autowired
 	MultipleChoicesQuestionRepository mutiRepo;
+	@Autowired
+	EssayQuestionRepository essayRepository;
 	@Autowired
 	LessonRepository lessonRepository;
 	
@@ -76,6 +80,18 @@ public class ExamService {
 	@DeleteMapping("/api/exam/{eid}")
 	public void deleteExam(@PathVariable("eid") int examId) {
 		examRepository.deleteById(examId);
+	}
+	
+	@PostMapping("/api/exam/{eid}/essay")
+	public EssayExamQuestion createEssayExamQuestion(@PathVariable("eid") int examId, 
+			@RequestBody EssayExamQuestion newEssayQuestion) {
+		Optional<Exam> optional = examRepository.findById(examId);
+		if (optional.isPresent()) {
+			Exam exam = optional.get();
+			newEssayQuestion.setExam(exam);
+			return essayRepository.save(newEssayQuestion);
+		}
+		return null;
 	}
 	
 	@GetMapping("/api/multi/{questionId}")
