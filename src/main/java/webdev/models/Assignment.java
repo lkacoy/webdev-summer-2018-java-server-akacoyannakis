@@ -13,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Assignment extends Widget {
-	@Id
+/*	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int id;*/
 	private int points;
 	private String title;
 	private String description;
