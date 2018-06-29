@@ -1,7 +1,5 @@
 package webdev.models;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -10,13 +8,13 @@ import javax.persistence.Table;
 @Table(name = "MULTIPLE_CHOICE_QUESTION")
 public class MultipleChoiceQuestion extends BaseExamQuestion {
 	@Column(name="OPTIONS", nullable=false)
-	private List<String> options;
+	private String options;
 	@Column(name="CORRECT_OPTION", nullable=false)
 	private int correctOption;
-	public List<String> getOptions() {
+	public String getOptions() {
 		return options;
 	}
-	public void setOptions(List<String> options) {
+	public void setOptions(String options) {
 		this.options = options;
 	}
 	public int getCorrectOption() {
