@@ -19,6 +19,7 @@ public class Assignment extends Widget {
 	private int points;
 	private String title;
 	private String description;
+	private String href;
 	@ManyToOne
 	@JsonIgnore
 	private Lesson lesson;
@@ -60,6 +61,12 @@ public class Assignment extends Widget {
 	}
 	public void setQuestions(List<BaseExamQuestion> questions) {
 		this.questions = questions;
+	}
+	public String getHref() {
+		return href;
+	}
+	public void setHref(String href) {
+		this.href = href;
 	}
 	
 	
