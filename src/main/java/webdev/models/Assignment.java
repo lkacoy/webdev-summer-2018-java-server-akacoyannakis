@@ -26,12 +26,12 @@ public class Assignment extends Widget {
 	@OneToMany
 	@JsonIgnore
 	private List<BaseExamQuestion> questions;
-	public int getId() {
+/*	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
+	}*/
 	public int getPoints() {
 		return points;
 	}
