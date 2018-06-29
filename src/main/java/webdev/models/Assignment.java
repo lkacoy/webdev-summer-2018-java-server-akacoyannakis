@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Assignment {
+public class Assignment extends Widget {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
