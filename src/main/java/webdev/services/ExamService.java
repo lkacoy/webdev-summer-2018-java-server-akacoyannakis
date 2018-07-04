@@ -84,18 +84,6 @@ public class ExamService {
 		examRepository.deleteById(examId);
 	}
 	
-	@PostMapping("/api/exam/{eid}/essay")
-	public EssayExamQuestion createEssayExamQuestion(@PathVariable("eid") int examId, 
-			@RequestBody EssayExamQuestion newEssayQuestion) {
-		Optional<Exam> optional = examRepository.findById(examId);
-		if (optional.isPresent()) {
-			Exam exam = optional.get();
-			newEssayQuestion.setExam(exam);
-			return essayRepository.save(newEssayQuestion);
-		}
-		return null;
-	}
-	
 	@PostMapping("/api/exam/{eid}/choice")
 	public MultipleChoiceQuestion createMultipleChoiceQuestion(@PathVariable("eid") int examId,
 			@RequestBody MultipleChoiceQuestion newMultipleChoiceQuestion) {
