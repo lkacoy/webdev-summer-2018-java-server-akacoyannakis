@@ -32,8 +32,6 @@ public class ExamService {
 	@Autowired
 	ExamRepository examRepository;
 	@Autowired
-	TrueFalseQuestionRepository trueFalseRepository;
-	@Autowired
 	FillInTheBlanksQuestionRepository fillInBlanksRepository;
 	@Autowired
 	LessonRepository lessonRepository;
@@ -94,27 +92,6 @@ public class ExamService {
 		return null;
 	}
 	
-	@PostMapping("/api/exam/{eid}/truefalse")
-	public TrueFalseExamQuestion createTrueFalseQuestion(@PathVariable("eid") int examId,
-			@RequestBody TrueFalseExamQuestion newTrueFalseQuestion) {
-		Optional<Exam> optional = examRepository.findById(examId);
-		if (optional.isPresent()) {
-			Exam exam = optional.get();
-			newTrueFalseQuestion.setExam(exam);
-			return trueFalseRepository.save(newTrueFalseQuestion);
-		}
-		return null;
-	}
-	
-	
-	@GetMapping("/api/truefalse/{questionId}")
-	public TrueFalseExamQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<TrueFalseExamQuestion> optional = trueFalseRepository.findById(questionId);
-		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
-	}
 	
 	@GetMapping("/api/fillInBlanks/{questionId}") 
 	public FillInTheBlanksExamQuestion findFillInBlanksQuestionById(@PathVariable("questionId") int questionId) {
