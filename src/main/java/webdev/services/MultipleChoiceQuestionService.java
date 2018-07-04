@@ -10,38 +10,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import webdev.models.EssayExamQuestion;
 import webdev.models.Exam;
-import webdev.repositories.EssayQuestionRepository;
+import webdev.models.MultipleChoiceQuestion;
 import webdev.repositories.ExamRepository;
+import webdev.repositories.MultipleChoicesQuestionRepository;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class EssayQuestionService {
+public class MultipleChoiceQuestionService {
 
 	@Autowired
 	ExamRepository examRepository;
+
 	@Autowired
-	EssayQuestionRepository essayRepository;
+	MultipleChoicesQuestionRepository multipleChoiceRepository;
 	
-	@PostMapping("/api/exam/{eid}/essay")
-	public EssayExamQuestion createEssayExamQuestion(@PathVariable("eid") int examId, 
-			@RequestBody EssayExamQuestion newEssayQuestion) {
+	@PostMapping("/api/exam/{eid}/choice")
+	public MultipleChoiceQuestion createMultipleChoiceQuestion(@PathVariable("eid") int examId,
+			@RequestBody MultipleChoiceQuestion newMultipleChoiceQuestion) {
 		Optional<Exam> optional = examRepository.findById(examId);
 		if (optional.isPresent()) {
 			Exam exam = optional.get();
-			newEssayQuestion.setExam(exam);
-			return essayRepository.save(newEssayQuestion);
+			newMultipleChoiceQuestion.setExam(exam);
+			return multipleChoiceRepository.save(newMultipleChoiceQuestion);
 		}
 		return null;
 	}
 	
-	@GetMapping("/api/essay/{questionId}")
-	public EssayExamQuestion findEssayQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<EssayExamQuestion> optional = essayRepository.findById(questionId);
-		if (optional.isPresent()) {
+	@GetMapping("/api/multi/{questionId}")
+	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
+		Optional<MultipleChoiceQuestion> optional = multipleChoiceRepository.findById(questionId);
+		if(optional.isPresent()) {
 			return optional.get();
 		}
 		return null;
 	}
+
 }

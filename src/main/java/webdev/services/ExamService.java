@@ -34,10 +34,6 @@ public class ExamService {
 	@Autowired
 	TrueFalseQuestionRepository trueFalseRepository;
 	@Autowired
-	MultipleChoicesQuestionRepository multipleChoiceRepository;
-	@Autowired
-	EssayQuestionRepository essayRepository;
-	@Autowired
 	FillInTheBlanksQuestionRepository fillInBlanksRepository;
 	@Autowired
 	LessonRepository lessonRepository;
@@ -84,17 +80,7 @@ public class ExamService {
 		examRepository.deleteById(examId);
 	}
 	
-	@PostMapping("/api/exam/{eid}/choice")
-	public MultipleChoiceQuestion createMultipleChoiceQuestion(@PathVariable("eid") int examId,
-			@RequestBody MultipleChoiceQuestion newMultipleChoiceQuestion) {
-		Optional<Exam> optional = examRepository.findById(examId);
-		if (optional.isPresent()) {
-			Exam exam = optional.get();
-			newMultipleChoiceQuestion.setExam(exam);
-			return multipleChoiceRepository.save(newMultipleChoiceQuestion);
-		}
-		return null;
-	}
+	
 	
 	@PostMapping("/api/exam/{eid}/blanks")
 	public FillInTheBlanksExamQuestion createFillInBlanksQuestion(@PathVariable("eid") int examId,
@@ -120,28 +106,11 @@ public class ExamService {
 		return null;
 	}
 	
-	@GetMapping("/api/multi/{questionId}")
-	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<MultipleChoiceQuestion> optional = multipleChoiceRepository.findById(questionId);
-		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
-	}
-
+	
 	@GetMapping("/api/truefalse/{questionId}")
 	public TrueFalseExamQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
 		Optional<TrueFalseExamQuestion> optional = trueFalseRepository.findById(questionId);
 		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
-	}
-	
-	@GetMapping("/api/essay/{questionId}")
-	public EssayExamQuestion findEssayQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<EssayExamQuestion> optional = essayRepository.findById(questionId);
-		if (optional.isPresent()) {
 			return optional.get();
 		}
 		return null;
