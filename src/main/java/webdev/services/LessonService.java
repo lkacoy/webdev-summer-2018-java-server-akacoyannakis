@@ -42,6 +42,19 @@ public class LessonService {
 		return null;
 
 	}
+	
+	@PostMapping("/api/module/{moduleId}/lesson")
+	public Lesson createLesson(@PathVariable("moduleId") int moduleId,
+			@RequestBody Lesson newLesson) {
+		Optional<Module> data = moduleRepository.findById(moduleId);
+		if(data.isPresent()) {
+			Module module = data.get();
+			newLesson.setModule(module);
+			return lessonRepository.save(newLesson);
+		}
+		return null;
+
+	}
 
 	@GetMapping("/api/course/{courseId}/module/{moduleId}/lesson")
 	public List<Lesson> findAllLessonsForModule(
