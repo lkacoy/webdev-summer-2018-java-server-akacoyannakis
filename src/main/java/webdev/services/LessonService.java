@@ -43,7 +43,7 @@ public class LessonService {
 
 	}
 	
-	@PostMapping("/api/module/{moduleId}/lesson")
+	@GetMapping("/api/module/{moduleId}/lesson")
 	public Lesson createLesson(@PathVariable("moduleId") int moduleId,
 			@RequestBody Lesson newLesson) {
 		Optional<Module> data = moduleRepository.findById(moduleId);
